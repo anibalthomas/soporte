@@ -25,11 +25,13 @@ class HomeController extends Controller
     {
       $cursos = Solicitud::where('status', 'curso')->count();
       $colas = Solicitud::where('status', 'cola')->count();
+      $noti = Solicitud::where('status', 'cola')->count();
       $finalizadas = Solicitud::where('status', 'finalizada')->count();
+      $canceladas = Solicitud::where('status', 'cancelada')->count();
 
-
-
-        return view('home',compact('colas','cursos','finalizadas'));
+        return view('home',compact('colas','cursos','finalizadas', 'noti','canceladas'));
     }
+
+
 
 }

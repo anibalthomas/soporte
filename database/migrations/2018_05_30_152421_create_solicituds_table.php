@@ -25,6 +25,7 @@ class CreateSolicitudsTable extends Migration
             $table->timestamps();
             $table->string('atiende')->nullable();
             $table->string('status')->nullable();
+            // $table->string('turno')->nullable();
             $table->string('tiempo_inicio')->nullable();
             $table->string('tiempo_final')->nullable();
         });

@@ -12,7 +12,7 @@
 
     <div class="col-lg-6">
         <div class="card card-stats">
-            <div class="card-header" data-background-color="orange">
+            <div class="card-header" data-background-color="blue">
                 <i class="material-icons">assignment</i>
             </div>
             <div class="card-content">
@@ -26,7 +26,7 @@
     </div>
     <div class="col-lg-6">
         <div class="card card-stats">
-            <div class="card-header" data-background-color="green">
+            <div class="card-header" data-background-color="yellow">
                 <i class="material-icons">watch_later</i>
             </div>
             <div class="card-content">
@@ -39,7 +39,7 @@
 
     <div class="col-lg-6">
         <div class="card card-stats">
-            <div class="card-header" data-background-color="red">
+            <div class="card-header" data-background-color="green">
                 <i class="material-icons">playlist_add_check</i>
             </div>
             <div class="card-content">
@@ -50,19 +50,32 @@
         </div>
     </div>
 
+    <div class="col-lg-6">
+        <div class="card card-stats">
+            <div class="card-header" data-background-color="red">
+                <i class="material-icons">cancel</i>
+            </div>
+            <div class="card-content">
+                <p class="category">Solicitudes Canceladas</p>
+                <h3 class="title">{{$canceladas}}</h3>
+            </div>
+
+        </div>
+    </div>
+
   </div>
 
   <div class="col-lg-4">
     <div class="card card-profile">
       <div class="card-avatar">
-        <a href="#pablo">
-          <img class="img" src="/material2/img/faces/marc.jpg" />
+        <a href="#">
+          <img class="img" src="/material2/img/faces/{{ Auth::user()->name }}.jpg" />
         </a>
       </div>
       <div class="content">
       <div class="content">
         <h6 class="category text-gray">{{ Auth::user()->cargo }}</h6>
-        <h4 class="card-title">{{ Auth::user()->name }}</h4>
+        <h4 class="card-title">{{ Auth::user()->name }} {{ Auth::user()->apellido }}</h4>
 <br>
 <br>
 <br>

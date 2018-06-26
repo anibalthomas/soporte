@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 // Route::get('/solicitud', 'SolicitudesController@create')->name('solicitud');
 // Route::get('/lista', 'SolicitudesController@index')->name('lista');
 // Route::post('guardar', 'SolicitudesController@store')->name('guardar');
@@ -29,8 +30,9 @@ Route::get('/solicitud', 'SolicitudesController@index')->name('lista');
 Route::get('/solicitud/create', 'SolicitudesController@create')->name('solicitud');
 Route::post('/solicitud', 'SolicitudesController@store')->name('guardar');
 Route::get('solicitud/{id}/edit', 'SolicitudesController@edit')->name('edit');
-// Route::get('solicitud/{id}', 'SolicitudesController@show')->name('show');
+Route::get('solicitud/turno', 'SolicitudesController@turno')->name('turno');
 Route::put('solicitud/{id}', 'SolicitudesController@update')->name('update');
+Route::put('cancelar/{id}', 'SolicitudesController@updatecancelar')->name('updatecancelar');
 Route::delete('solicitud/{id}', 'SolicitudesController@destroy')->name('destroy');
 
 

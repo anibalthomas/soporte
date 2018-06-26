@@ -82,16 +82,43 @@
                               </div>
                           </div>
                       </div>
-                      <div class="btn-group">
-                        <input type="radio" id="test1" name="status" value="cola" {{ $solicitud->status == 'cola' ? 'checked' : ''}}>
-                        <label for="test1">En cola</label>
-                        <input type="radio" id="test2" name="status" value="curso" {{ $solicitud->status == 'curso' ? 'checked' : ''}}>
-                        <label for="test2">En curso</label>
-                        <input type="radio" id="test3" name="status" value="finalizada" {{ $solicitud->status == 'finalizada' ? 'checked' : ''}}>
-                        <label for="test3">Finalizado</label>
-                      </div>
-                      <button type="submit" class="btn btn-warning pull-right">Actualizar</button>
-                      <div class="clearfix"></div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="btn-group">
+      <input type="radio" id="test2" name="status" value="curso" {{ $solicitud->status == 'curso' ? 'checked' : ''}}>
+      <label for="test2">En curso</label>
+      <input type="radio" id="test1" name="status" value="cola" {{ $solicitud->status == 'cola' ? 'checked' : ''}}>
+      <label for="test1">En cola</label>
+      <input type="radio" id="test3" name="status" value="finalizada" {{ $solicitud->status == 'finalizada' ? 'checked' : ''}}>
+      <label for="test3">Finalizado</label>
+      <input type="radio" id="test4" name="status" value="cancelada" {{ $solicitud->status == 'cancelada' ? 'checked' : ''}}>
+      <label for="test4">Cancelado</label>
+    </div>
+
+
+    <div class="form-group label-floating">
+        <label class="control-label">Atiende</label>
+        <select name="atiende" class="form-control">
+          <option value="{{ $solicitud->atiende}}">{{ $solicitud->atiende}}</option>
+          <option value="Anibal Sánchez">Anibal Sánchez</option>
+          <option value="Mónica Enríquez">Mónica Enríquez</option>
+        </select>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <button type="submit" class="btn btn-primary pull-right" style="background-color: #26c6da;">Actualizar</button>
+    <div class="clearfix"></div>
+
+  </div>
+</div>
+
+
+
+
                   </form>
               </div>
           </div>

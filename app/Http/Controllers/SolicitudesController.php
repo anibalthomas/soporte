@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Auth;    //para agregar la clase auth
 
 class SolicitudesController extends Controller
 {
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
     /**
      * Display a listing of the resource.
      *
@@ -18,11 +22,18 @@ class SolicitudesController extends Controller
      */
     public function index()
     {
+
+      $noti = Solicitud::where('status', 'cola')->count();
+      $cursosn = Solicitud::where('status', 'curso')->count();
+      $finalizadasn = Solicitud::where('status', 'finalizada')->count();
+      $canceladasn = Solicitud::where('status', 'cancelada')->count();
+
       $cursos = Solicitud::where('status', 'curso')->get();
       $colas = Solicitud::where('status', 'cola')->get();
       $finalizadas = Solicitud::where('status', 'finalizada')->get();
+      $canceladas = Solicitud::where('status', 'cancelada')->get();
       // $solicitudes = Solicitud::all();
-      return view('lista',compact('colas','cursos','finalizadas'));
+      return view('lista',compact('colas','cursos','finalizadas','canceladas','noti','cursosn','finalizadasn','canceladasn'));
 
     }
 
@@ -33,7 +44,8 @@ class SolicitudesController extends Controller
      */
     public function create()
     {
-        return view('solicitud');
+      $noti = Solicitud::where('status', 'cola')->count();
+        return view('solicitud',compact('noti'));
     }
 
     /**
@@ -51,7 +63,7 @@ class SolicitudesController extends Controller
           'tipo' => $request->get('tipo'),
           'prioridad' => $request->get('prioridad'),
           'notas' => $request->get('notas'),
-          'status' => "cola"
+          'status' => "cola",
           ]);
 
           return redirect()->route('home');
@@ -63,9 +75,19 @@ class SolicitudesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function turno()
     {
-        return "hola" . $id;
+
+      $ultimo = Solicitud::where('status', 'curso')->get()->last();
+      $prioridades = Solicitud::where('status', 'curso')->where('prioridad', 'Inmediato')->get();
+      $prioridades_num = Solicitud::where('status', 'curso')->where('prioridad', 'Inmediato')->count();
+
+      $turnos_num = Solicitud::where('solicitante', Auth::user()->name)->where('status', 'curso')->count();
+      $turnos_colas_num = Solicitud::where('solicitante', Auth::user()->name)->where('status', 'cola')->count();
+      $turnos = Solicitud::where('solicitante', Auth::user()->name)->where('status', 'curso')->get();
+      $turnos_colas = Solicitud::where('solicitante', Auth::user()->name)->where('status', 'cola')->get();
+      $noti = Solicitud::where('status', 'cola')->count();
+        return view('turno',compact('noti','turnos','turnos_colas','turnos_colas_num','turnos_num','ultimo','prioridades','prioridades_num'));
     }
 
     /**
@@ -76,8 +98,9 @@ class SolicitudesController extends Controller
      */
     public function edit($id)
     {
+      $noti = Solicitud::where('status', 'cola')->count();
       $solicitud = Solicitud::findOrFail($id);
-      return view('edit',compact('solicitud'));
+      return view('edit',compact('solicitud','noti'));
     }
 
     /**
@@ -92,25 +115,36 @@ class SolicitudesController extends Controller
       // return $request->all();
         $solicitud = Solicitud::findOrFail($id);
 
+          if ($request->input('atiende') == "") {
+            $solicitud->atiende = Auth::user()->name;
+          } else {
+           $solicitud->atiende = $request->get('atiende');
+          }
           $solicitud->solicitante = $request->get('solicitante');
           $solicitud->tipo = $request->get('tipo');
           $solicitud->prioridad = $request->get('prioridad');
           $solicitud->notas = $request->get('notas');
-          $solicitud->atiende = Auth::user()->name;
-          $solicitud->status = $request->get('status');
 
+          $solicitud->status = $request->get('status');
           if ($request->get('status') == "curso") {
           $solicitud->tiempo_inicio = Carbon::now();
           }
-
           if ($request->get('status') == "finalizada") {
             $solicitud->tiempo_final = Carbon::now();
           }
-
           $solicitud->save();
-
           return redirect()->route('lista');
     }
+
+    public function updatecancelar(Request $request, $id)
+    {
+      // return $request->all();
+        $solicitud = Solicitud::findOrFail($id);
+        $solicitud->status = "cancelada";
+        $solicitud->save();
+          return redirect()->route('turno');
+    }
+
 
     /**
      * Remove the specified resource from storage.

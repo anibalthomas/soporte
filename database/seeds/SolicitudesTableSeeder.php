@@ -13,49 +13,49 @@ class SolicitudesTableSeeder extends Seeder
     public function run()
     {
       $solicitud = new Solicitud;
-      $solicitud->registrante = "Anibal Sánchez";
-      $solicitud->solicitante = "Mónica Enriquez";
+      $solicitud->registrante = "Anibal";
+      $solicitud->solicitante = "Mónica";
       $solicitud->tipo = "Respaldo";
       $solicitud->prioridad = "Urgente";
       $solicitud->notas = "Maquina de Posgrado";
       $solicitud->status = "cola";
       $solicitud->save();
-      
+
       $solicitud = new Solicitud;
-      $solicitud->registrante = "Anibal Sánchez";
-      $solicitud->solicitante = "Mónica Enriquez";
+      $solicitud->registrante = "Anibal";
+      $solicitud->solicitante = "Mónica";
       $solicitud->tipo = "Respaldo";
       $solicitud->prioridad = "Urgente";
       $solicitud->notas = "Maquina de Posgrado";
       $solicitud->status = "cola";
       $solicitud->save();
-      
+
       $solicitud = new Solicitud;
-      $solicitud->registrante = "Anibal Sánchez";
-      $solicitud->solicitante = "Mónica Enriquez";
+      $solicitud->registrante = "Anibal";
+      $solicitud->solicitante = "Mónica";
       $solicitud->tipo = "Respaldo";
       $solicitud->prioridad = "Urgente";
       $solicitud->notas = "Maquina de Posgrado";
       $solicitud->status = "cola";
       $solicitud->save();
-      
+
       $solicitud = new Solicitud;
-      $solicitud->registrante = "Anibal Sánchez";
-      $solicitud->solicitante = "Mónica Enriquez";
+      $solicitud->registrante = "Anibal";
+      $solicitud->solicitante = "Mónica";
       $solicitud->tipo = "Respaldo";
       $solicitud->prioridad = "Urgente";
       $solicitud->notas = "Maquina de Posgrado";
       $solicitud->status = "cola";
       $solicitud->save();
-      
+
       $solicitud = new Solicitud;
-      $solicitud->registrante = "Anibal Sánchez";
-      $solicitud->solicitante = "Mónica Enriquez";
+      $solicitud->registrante = "Anibal";
+      $solicitud->solicitante = "Mónica";
       $solicitud->tipo = "Respaldo";
       $solicitud->prioridad = "Urgente";
       $solicitud->notas = "Maquina de Posgrado";
       $solicitud->status = "cola";
       $solicitud->save();
-      
+
     }
 }

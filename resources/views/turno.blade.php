@@ -115,16 +115,25 @@
               <div class="card-header" data-background-color="yellow">
                   <h4 class="title">En espera</h4>
                   <p class="category">Solicitudes en espera de ser antendidas</p>
-                  <div class="pull-right">
-                    <p style="font-size: 20px; color: black;" class="category">Turno Actual:
+
+<br>
+
+                </div>
+                  <div class="card-header" data-background-color="amarillo">
+
+                  {{-- <div class="pull-right inline"> --}}
+                    <p style="font-size: 20px; color: black;" class="category pull-right inline">Turno Actual:
                       @if (optional($ultimo)->id === null)
                         0
                       @else
-                        <strong style="color: red;font-size: 24px;font-family: digitos;">{{$ultimo->id}}</strong>
+                        <strong style="color: red;font-size: 22px;font-family: digitos;">{{$ultimo->id}}</strong>
                       @endif
                     </p>
                     <p style=" color: black;" class="category">El turno puede variar dependiendo de la prioridad de la solicitud</p>
-                  </div>
+                  {{-- </div> --}}
+
+
+
               </div>
               <div class="card-content table-responsive">
                   <table id="example2" class="table" style="width:100%">
